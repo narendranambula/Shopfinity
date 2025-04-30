@@ -78,27 +78,51 @@ public class DataInitializer {
                     new ProductSeed("JBL Tune 760NC", "Bluetooth headphone with ANC", 6499, "headphone", "JBL", 45, "6.4.jpeg")
             );
 
+//            for (ProductSeed seed : products) {
+//                Product product = new Product();
+//                product.setName(seed.name);
+//                product.setDescription(seed.description);
+//                product.setPrice(seed.price);
+//                product.setCategory(seed.category);
+//                product.setBrand(seed.brand);
+//                product.setReleasedate(new Date());
+//                product.setProductavailable(true);
+//                product.setStockquantity(seed.stock);
+//
+//                // Load image
+//                ClassPathResource imgFile = new ClassPathResource("static/images/" + seed.imageFileName);
+//                MultipartFile image = new MockMultipartFile(
+//                        imgFile.getFilename(),
+//                        imgFile.getFilename(),
+//                        Files.probeContentType(imgFile.getFile().toPath()),
+//                        Files.readAllBytes(imgFile.getFile().toPath())
+//                );
+//
+//                productService.addProduct(product, image);
             for (ProductSeed seed : products) {
-                Product product = new Product();
-                product.setName(seed.name);
-                product.setDescription(seed.description);
-                product.setPrice(seed.price);
-                product.setCategory(seed.category);
-                product.setBrand(seed.brand);
-                product.setReleasedate(new Date());
-                product.setProductavailable(true);
-                product.setStockquantity(seed.stock);
+                ClassPathResource imgFile = new ClassPathResource("static/images/" + seed.imageFileName());
+                byte[] fileData = Files.readAllBytes(imgFile.getFile().toPath());
 
-                // Load image
-                ClassPathResource imgFile = new ClassPathResource("static/images/" + seed.imageFileName);
-                MultipartFile image = new MockMultipartFile(
-                        imgFile.getFilename(),
-                        imgFile.getFilename(),
-                        Files.probeContentType(imgFile.getFile().toPath()),
-                        Files.readAllBytes(imgFile.getFile().toPath())
+                MultipartFile multipartFile = new MockMultipartFile(
+                        seed.imageFileName(),
+                        seed.imageFileName(),
+                        "image/jpeg",
+                        fileData
                 );
 
-                productService.addProduct(product, image);
+                Product product = new Product();
+                product.setName(seed.name());
+                product.setDescription(seed.description());
+                product.setPrice(seed.price());
+                product.setCategory(seed.category());
+                product.setBrand(seed.brand());
+                product.setReleasedate(new Date());
+                product.setProductavailable(true);
+                product.setStockquantity(seed.stock());
+
+                productService.addProduct(product, multipartFile);
+
+
             }
         };
     }
