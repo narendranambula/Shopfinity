@@ -1,6 +1,6 @@
 # 🛒 Shopifinity – E-Commerce Spring Boot App
 
-A Spring Boot-based **E-Commerce Web Application** that supports product listing, category filtering, cart functionality, and basic CRUD operations for managing products.
+**Shopifinity** is a full-featured, modular e-commerce web application built using **Spring Boot** for the backend and integrated with a modern frontend framework. Designed with scalability and modularity in mind, Shopifinity replicates the core functionality of real-world e-commerce platforms like Amazon or Flipkart — enabling users to browse products, filter by categories, manage a shopping cart, and perform secure CRUD operations on product data.
 
 ---
 
